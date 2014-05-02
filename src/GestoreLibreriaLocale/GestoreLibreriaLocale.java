@@ -19,8 +19,7 @@ public class GestoreLibreriaLocale {
     public static void creaCategoria(String nome) {
         Categoria categoria = new Categoria();
         categoria.setNome(nome);
-        EntityManagerFactory emf = 
-                javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
@@ -32,5 +31,8 @@ public class GestoreLibreriaLocale {
             em.close();
         }
     }
+    
+    
+    
 
 }

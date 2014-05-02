@@ -4,6 +4,9 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>LogicaDominio.Categoria</class>
     <class>LogicaDominio.Amico</class>
+    <class>LogicaDominio.Libro</class>
+    <class>LogicaDominio.CopiaUtente</class>
+    <class>LogicaDominio.Account</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/mdb"/>
       <property name="javax.persistence.jdbc.user" value="mdb"/>

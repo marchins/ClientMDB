@@ -6,6 +6,7 @@
 
 package Bootable;
 
+import GestoreAccountLocale.GestoreAccountLocale;
 import GestoreLibreriaLocale.GestoreLibreriaLocale;
 
 /**
@@ -18,7 +19,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        GestoreLibreriaLocale.creaCategoria("prova");
+        //GestoreLibreriaLocale.creaCategoria("prova");
+        GestoreAccountLocale.login("hodor","hodorpass");
     }
     
 }
