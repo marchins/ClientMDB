@@ -90,48 +90,48 @@ public class GestoreAccountLocale {
             throw new VincoliInputException(ErrorLabels.PASSWORD_LENGTH_ERROR_ITA);
         }
         if(! StringUtils.isAlphanumeric(password)) {
-            throw new VincoliInputException("La password deve essere una stringa alfanumerica");
+            throw new VincoliInputException(ErrorLabels.PASSWORD_IS_NOT_ALPHANUMERIC_ITA);
         }
     }
     
     private static void checkNome(String nome) throws VincoliInputException {
         if(nome == null) {
-            throw new VincoliInputException("Nome non specificato.");
+            throw new VincoliInputException(ErrorLabels.NOME_NOT_SPECIFICIED_ITA);
         }
         if(! (nome.length()>=1 && nome.length()<=50) ) {
-            throw new VincoliInputException("il nome deve avere una lunghezza comprea tra 1 e 50 caratteri alfanumerici");
+            throw new VincoliInputException(ErrorLabels.NOME_LENGTH_ERROR_ITA);
         }
         if(! StringUtils.isAlphanumeric(nome)) {
-            throw new VincoliInputException("il nome deve essere una stringa alfanumerica");
+            throw new VincoliInputException(ErrorLabels.NOME_IS_NOT_ALPHANUMERIC_ITA);
         }
     }
     
     private static void checkCognome(String cognome) throws VincoliInputException {
         if(cognome == null) {
-            throw new VincoliInputException("Cognome non specificato.");
+            throw new VincoliInputException(ErrorLabels.COGNOME_NOT_SPECIFICIED_ITA);
         }
         if(! (cognome.length()>=1 && cognome.length()<=50) ) {
-            throw new VincoliInputException("il cognome deve avere una lunghezza comprea tra 1 e 50 caratteri alfanumerici");
+            throw new VincoliInputException(ErrorLabels.COGNOME_LENGTH_ERROR_ITA);
         }
         if(! StringUtils.isAlphanumeric(cognome)) {
-            throw new VincoliInputException("il cognome deve essere una stringa alfanumerica");
+            throw new VincoliInputException(ErrorLabels.COGNOME_IS_NOT_ALPHANUMERIC_ITA);
         }
     }
     
     private static void checkEmail(String email)throws VincoliInputException {
         if(email == null) {
-            throw new VincoliInputException("Indirizzo email non specificato.");
+            throw new VincoliInputException(ErrorLabels.EMAIL_NOT_SPECIFICIED_ITA);
         }
         EmailValidator ev = new EmailValidator();
         if(!ev.validate(email)) {
-            throw new VincoliInputException("Indirizzo Email non valido");
+            throw new VincoliInputException(ErrorLabels.EMAIL_NOT_VALID_ITA);
         }
     }
     
    
     private static void checkData(Date dataNascita)throws VincoliInputException {
         if(dataNascita == null) {
-            throw new VincoliInputException("Data di nascita non specificata.");    
+            throw new VincoliInputException(ErrorLabels.DATA_NOT_SPECIFICIED_ITA);    
         }
          // TODO
          // Verifica del formato della data
