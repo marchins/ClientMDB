@@ -71,23 +71,23 @@ public class GestoreAccountLocale {
     
     private static void checkUsername(String username) throws VincoliInputException {
         if(username == null) {
-            throw new VincoliInputException("Username non specificato.");
+            throw new VincoliInputException(ErrorLabels.USER_NOT_SPECIFICIED_ITA);
         }
         
         if(! (username.length()>=4 && username.length()<=20) ) {
             throw new VincoliInputException(ErrorLabels.USER_LENGTH_ERROR_ITA);
         }
         if(! StringUtils.isAlphanumeric(username)) {
-            throw new VincoliInputException("Lo username deve essere una stringa alfanumerica");
+            throw new VincoliInputException(ErrorLabels.USER_IS_NOT_ALPHANUMERIC_ITA);
         }
     }
     
     private static void checkPassword(String password) throws VincoliInputException {
         if(password == null) {
-            throw new VincoliInputException("Password non specificata.");
+            throw new VincoliInputException(ErrorLabels.PASSWORD_NOT_SPECIFIED_ITA);
         }
         if(! (password.length()>=8 && password.length()<=20) ) {
-            throw new VincoliInputException("la password deve avere lunghezza compresa tra 8 e 20 caratteri alfanumerici");
+            throw new VincoliInputException(ErrorLabels.PASSWORD_LENGTH_ERROR_ITA);
         }
         if(! StringUtils.isAlphanumeric(password)) {
             throw new VincoliInputException("La password deve essere una stringa alfanumerica");

@@ -7,8 +7,10 @@
 package LogicaDominio;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -24,7 +26,19 @@ public class Categoria implements Serializable {
     @Id
     @ManyToOne
     private Account account;
+    @ManyToMany
+    private Collection<CopiaUtente> copieLibriAssociate;
 
+
+    public Collection<CopiaUtente> getCopieLibriAssociate() {
+        return copieLibriAssociate;
+    }
+
+    public void setCopieLibriAssociate(Collection<CopiaUtente> copieLibriAssociate) {
+        this.copieLibriAssociate = copieLibriAssociate;
+    }
+    
+    
     public Account getAccount() {
         return account;
     }

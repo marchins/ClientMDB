@@ -6,8 +6,10 @@
 
 package GestoreLibreriaLocale;
 
+import Exceptions.CategoriaGiaEsistenteException;
 import LogicaDominio.Account;
 import LogicaDominio.Categoria;
+import LogicaDominio.CopiaUtente;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,36 +20,35 @@ import javax.persistence.EntityManagerFactory;
  */
 public class GestoreLibreriaLocale {
     
-    public static void creaCategoria(String nome) {
+    public static void creaCategoria(String nome) throws CategoriaGiaEsistenteException {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
         EntityManager em = emf.createEntityManager();
         
         List<Categoria> result = em.createQuery("SELECT c FROM Categoria c WHERE c.nome = '" + nome +"'",Categoria.class).getResultList();
 
         if(result.size()>0) {
-           System.out.println("Esiste già una categoria con questo nome"); 
+           throw new CategoriaGiaEsistenteException(); 
         } else {
             Account account = em.createQuery("SELECT c FROM Account c",Account.class).getSingleResult();
             Categoria categoria = new Categoria();
             categoria.setNome(nome);
             categoria.setAccount(account);
             em.getTransaction().begin();
-            try {
-                em.persist(categoria);
-                em.getTransaction().commit();
-                //GestoreLibreriaRemoto.creaCategoria(Categoria, autenticazione)
-            } catch (Exception e) {
-            em.getTransaction().rollback();
-            } finally {
-                em.close();
-            }
+            em.persist(categoria);
+            em.getTransaction().commit();
+            //GestoreLibreriaRemoto.creaCategoria(Categoria, autenticazione)
+            em.close();
         }  
     }
     
     public static void rimuoviCategoria(Categoria categoria) {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
         EntityManager em = emf.createEntityManager();
-        em.remove(categoria);
+        Categoria categoriaDaRimuovere = em.merge(categoria);
+        em.remove(categoriaDaRimuovere);
+        em.getTransaction().begin();
+        em.getTransaction().commit();
+        em.close();
         //GestoreLibreriaRemoto.rimuoviCategoria(Categoria, autenticazione)
     }
     
@@ -55,6 +56,14 @@ public class GestoreLibreriaLocale {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
         EntityManager em = emf.createEntityManager();
         List<Categoria> result = em.createQuery("SELECT c FROM Categoria c ",Categoria.class).getResultList();
+        return result;
+    }
+    
+    public static List<CopiaUtente> visualizzaContenutoCategoria(Categoria categoria) {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
+        EntityManager em = emf.createEntityManager();
+        List<CopiaUtente> result;
+        result = em.createQuery("SELECT c.copieLibriAssociate FROM Categoria c WHERE c.nome = '" + categoria.getNome() +"'",CopiaUtente.class).getResultList();
         return result;
     }
     
