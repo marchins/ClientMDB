@@ -34,16 +34,28 @@ public class GestoreLibreriaLocale {
             em.getTransaction().begin();
             try {
                 em.persist(categoria);
-                    em.getTransaction().commit();
+                em.getTransaction().commit();
+                //GestoreLibreriaRemoto.creaCategoria(Categoria, autenticazione)
             } catch (Exception e) {
             em.getTransaction().rollback();
             } finally {
                 em.close();
             }
-        }
-        
-        
-        
+        }  
+    }
+    
+    public static void rimuoviCategoria(Categoria categoria) {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
+        EntityManager em = emf.createEntityManager();
+        em.remove(categoria);
+        //GestoreLibreriaRemoto.rimuoviCategoria(Categoria, autenticazione)
+    }
+    
+    public static List<Categoria> visualizzaElencoCategorie() {
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
+        EntityManager em = emf.createEntityManager();
+        List<Categoria> result = em.createQuery("SELECT c FROM Categoria c ",Categoria.class).getResultList();
+        return result;
     }
     
     
