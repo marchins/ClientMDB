@@ -24,12 +24,12 @@ public class GestoreLibreriaLocale {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
         EntityManager em = emf.createEntityManager();
         
-        List<Categoria> result = em.createQuery("SELECT c FROM Categoria c WHERE c.nome = '" + nome +"'",Categoria.class).getResultList();
+        List<Categoria> result = em.createQuery("SELECT c FROM Categoria c WHERE c.nome = '" + nome +"'", Categoria.class).getResultList();
 
         if(result.size()>0) {
            throw new CategoriaGiaEsistenteException(); 
         } else {
-            Account account = em.createQuery("SELECT c FROM Account c",Account.class).getSingleResult();
+            Account account = em.createQuery("SELECT c FROM Account c", Account.class).getSingleResult();
             Categoria categoria = new Categoria();
             categoria.setNome(nome);
             categoria.setAccount(account);
@@ -55,7 +55,7 @@ public class GestoreLibreriaLocale {
     public static List<Categoria> visualizzaElencoCategorie() {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
         EntityManager em = emf.createEntityManager();
-        List<Categoria> result = em.createQuery("SELECT c FROM Categoria c ",Categoria.class).getResultList();
+        List<Categoria> result = em.createQuery("SELECT c FROM Categoria c ", Categoria.class).getResultList();
         return result;
     }
     
@@ -67,7 +67,17 @@ public class GestoreLibreriaLocale {
         return result;
     }
     
-    
+    public static void assegnaCategoriaACopia(CopiaUtente libro, Categoria categoria) {
+        libro.getCategorieAssegnate().add(categoria);
+        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
+        EntityManager em = emf.createEntityManager();
+        CopiaUtente copiaAttached= em.merge(libro);
+        em.remove(copiaAttached);
+        em.getTransaction().begin();
+        em.getTransaction().commit();
+        em.close();
+        
+    }
     
 
 }
