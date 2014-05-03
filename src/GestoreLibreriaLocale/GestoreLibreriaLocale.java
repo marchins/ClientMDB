@@ -41,7 +41,7 @@ public class GestoreLibreriaLocale {
     }
     
     
-    public static void aggiungiLibro(Libro libro){
+    public static void aggiungiLibro(Libro libro) {
        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
        EntityManager em = emf.createEntityManager();
        List<Libro> result = em.createQuery("SELECT l FROM Libro l WHERE l.isbn = '" + libro.getIsbn() +"'", Libro.class).getResultList();
