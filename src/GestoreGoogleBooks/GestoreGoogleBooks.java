@@ -58,7 +58,6 @@ public class GestoreGoogleBooks {
 	while ((inputLine = in.readLine()) != null) { 
 	            response = response+inputLine;
 	}
-        System.out.println(response);
         JSONObject json = (JSONObject) JSONSerializer.toJSON(response);
 	JSONArray risultatiRicercaGoogleBooks = json.getJSONArray("items");
 	
@@ -77,19 +76,15 @@ public class GestoreGoogleBooks {
         JSONObject volumeInfo = ((JSONObject)object).getJSONObject("volumeInfo");
         
         String titolo=((JSONObject) volumeInfo).getString("title");
-        System.out.println(titolo);
         
         String autori=((JSONObject) volumeInfo).getString("authors");
         autori=autori.replace("\"","");
         autori=autori.replace("[","");
         autori=autori.replace("]","");
-        System.out.println(autori);
         
         String dataPubblicazione=((JSONObject) volumeInfo).getString("publishedDate");
-        System.out.println(dataPubblicazione);
         
         String casaEditrice = ((JSONObject) volumeInfo).getString("publisher");
-        System.out.println(casaEditrice);
         
         //ISBN
         JSONArray identifiers = (JSONArray)((JSONObject) volumeInfo).get("industryIdentifiers");
@@ -97,12 +92,10 @@ public class GestoreGoogleBooks {
         for(Object obj: identifiers){
             if(((JSONObject)obj).getString("type").equals("ISBN_13")){
              isbn= ((JSONObject)obj).getString("identifier"); 
-             System.out.println(isbn);
             }
         }
         
         String urlCopertina= ((JSONObject) volumeInfo).getJSONObject("imageLinks").getString("thumbnail");
-        System.out.println(urlCopertina);
 
         Libro libro = new Libro(isbn,titolo,autori,casaEditrice,dataPubblicazione,urlCopertina);
         libriConvertiti.add(libro);
