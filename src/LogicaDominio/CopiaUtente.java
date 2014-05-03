@@ -10,10 +10,9 @@ import Enumerations.Formato;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -35,6 +34,18 @@ public class CopiaUtente implements Serializable {
     private Formato formato;
     private String copertinaLocale;
 
+    @ManyToMany
+    private Collection<Categoria> categorieAssegnate;
+  
+    @ManyToOne
+    private StatoLettura statoLettura;
+    
+    @ManyToOne
+    private Valutazione valutazione;
+    
+    @OneToOne
+    private Collocazione collocazione;
+    
     public Collection<Categoria> getCategorieAssegnate() {
         return categorieAssegnate;
     }
@@ -43,8 +54,7 @@ public class CopiaUtente implements Serializable {
         this.categorieAssegnate = categorieAssegnate;
     }
     
-    @ManyToMany
-    private Collection<Categoria> categorieAssegnate;
+    
 
     public Libro getLibro() {
         return libro;

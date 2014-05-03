@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -34,6 +35,19 @@ public class Account implements Serializable {
     @OneToMany
     private Collection<CopiaUtente> copieUtente;
 
+    @ManyToMany
+    private Collection<CredenzialiSocialNetwork> credenzialiSocialNetwork;
+
+    public Collection<CredenzialiSocialNetwork> getCredenzialiSocialNetwork() {
+        return credenzialiSocialNetwork;
+    }
+
+    public void setCredenzialiSocialNetwork(Collection<CredenzialiSocialNetwork> credenzialiSocialNetwork) {
+        this.credenzialiSocialNetwork = credenzialiSocialNetwork;
+    }
+    
+    
+    
     public String getPassword() {
         return password;
     }

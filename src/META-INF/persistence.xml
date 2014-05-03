@@ -7,6 +7,10 @@
     <class>LogicaDominio.Libro</class>
     <class>LogicaDominio.CopiaUtente</class>
     <class>LogicaDominio.Account</class>
+    <class>LogicaDominio.StatoLettura</class>
+    <class>LogicaDominio.Valutazione</class>
+    <class>LogicaDominio.Collocazione</class>
+    <class>LogicaDominio.CredenzialiSocialNetwork</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/mdb"/>
       <property name="javax.persistence.jdbc.user" value="mdb"/>
