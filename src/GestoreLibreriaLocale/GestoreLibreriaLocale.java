@@ -46,33 +46,27 @@ public class GestoreLibreriaLocale {
        EntityManager em = emf.createEntityManager();
        List<Libro> result = em.createQuery("SELECT l FROM Libro l WHERE l.isbn = '" + libro.getIsbn() +"'", Libro.class).getResultList();
        Account account = em.createQuery("SELECT a FROM Account a", Account.class).getSingleResult();
-
+       
+       
+       CopiaUtente copiaUtente = new CopiaUtente();
+       copiaUtente.setLibro(libro);
+       copiaUtente.setFormato(Formato.CARTACEO);
+       copiaUtente.setAccount(account);
+       em.getTransaction().begin();
        if(result.size()>0) {
             List<Libro> copie = em.createQuery("SELECT l.copieUtente FROM Libro l WHERE l.isbn = '" + libro.getIsbn() +"'", Libro.class).getResultList();
-            CopiaUtente copiaUtente = new CopiaUtente();
-            copiaUtente.setLibro(libro);
             copiaUtente.setNumeroCopia(copie.size()+1);
-            copiaUtente.setAccount(account);
-            copiaUtente.setFormato(Formato.CARTACEO);
-            em.getTransaction().begin();
-            em.persist(copiaUtente);
-            em.getTransaction().commit();
             //valutazione,stato lettura,collocazione,copertinalocale
             //GestoreLibreriaRemoto.aggiungiLibro(libro,copiaUtente, autenticazione)
-            em.close();
        } else {
-            CopiaUtente copiaUtente = new CopiaUtente();
-            copiaUtente.setLibro(libro);
             copiaUtente.setNumeroCopia(1);
-            copiaUtente.setAccount(account);
-            copiaUtente.setFormato(Formato.CARTACEO);
-            em.getTransaction().begin();
             em.persist(libro);
-            em.persist(copiaUtente);
-            em.getTransaction().commit();
             //GestoreLibreriaRemoto.aggiungiLibro(libro,copiaUtente, autenticazione)
-            em.close(); 
+            
        }
+        em.persist(copiaUtente);
+        em.getTransaction().commit();
+        em.close(); 
     }
     
     public static void creaCategoria(String nome) throws CategoriaGiaEsistenteException {

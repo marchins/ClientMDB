@@ -43,6 +43,8 @@ public class aggiungiLibroTest {
         Libro libro2 = (GestoreLibreriaLocale.ricercaPerISBN("9788858501122")).get(0);
         GestoreLibreriaLocale.aggiungiLibro(libro2);
         List<CopiaUtente> result2 = em.createQuery("SELECT l FROM CopiaUtente l", CopiaUtente.class).getResultList();
+        result = em.createQuery("SELECT l FROM Libro l", Libro.class).getResultList();
+        assertEquals(1, result.size());
         assertEquals(2,result2.size());   
     }
    
