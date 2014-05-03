@@ -16,7 +16,8 @@ import org.junit.runners.Suite;
     creaCategoriaTest.class,
     registrazioneTest.class,
     rimuoviCategoriaTest.class,
-    ricercaGoogleBooksTest.class
+    ricercaGoogleBooksTest.class,
+    aggiungiLibroTest.class
 
 })
 public class AllTests {

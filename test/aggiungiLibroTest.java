@@ -45,7 +45,6 @@ public class aggiungiLibroTest {
         List<CopiaUtente> result2 = em.createQuery("SELECT l FROM CopiaUtente l", CopiaUtente.class).getResultList();
         assertEquals(2,result2.size());   
     }
-    
    
     @After
     public void tearDownTest() {
