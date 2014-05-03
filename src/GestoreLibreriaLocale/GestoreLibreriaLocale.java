@@ -7,18 +7,41 @@
 package GestoreLibreriaLocale;
 
 import Exceptions.CategoriaGiaEsistenteException;
+import GestoreGoogleBooks.GestoreGoogleBooks;
 import LogicaDominio.Account;
 import LogicaDominio.Categoria;
 import LogicaDominio.CopiaUtente;
+import LogicaDominio.Libro;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import net.sf.json.JSONObject;
 
 /**
  *
  * @author Blanco
  */
 public class GestoreLibreriaLocale {
+    
+    public static List<Libro> ricercaPerTitolo(String titolo) throws MalformedURLException, IOException {
+        return GestoreGoogleBooks.ricercaLibroTramiteParametro(titolo,GestoreGoogleBooks.TITOLO);
+        
+    }
+    
+    public static List<Libro> ricercaPerAutore(String autore) throws MalformedURLException, IOException {
+        return GestoreGoogleBooks.ricercaLibroTramiteParametro(autore,GestoreGoogleBooks.AUTORE);
+ 
+    }
+    
+    public static List<Libro> ricercaPerISBN(String isbn) throws MalformedURLException, IOException {
+        return GestoreGoogleBooks.ricercaLibroTramiteParametro(isbn,GestoreGoogleBooks.ISBN);
+
+    }
+    
+    
+    
     
     public static void creaCategoria(String nome) throws CategoriaGiaEsistenteException {
         EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");

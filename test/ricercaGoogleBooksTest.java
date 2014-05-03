@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
-import GestoreGoogleBooks.GestoreGoogleBooks;
+import GestoreLibreriaLocale.GestoreLibreriaLocale;
+import LogicaDominio.Libro;
 import java.io.IOException;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,7 +19,10 @@ public class ricercaGoogleBooksTest {
     
     @Test
     public void test1() throws IOException {
-        GestoreGoogleBooks.ricercaPerISBN("9788858501122");
+        List<Libro> risultati = GestoreLibreriaLocale.ricercaPerISBN("9788858501122");
+        assertEquals(1,risultati.size());
+        assertEquals("Dennis Lehane",risultati.get(0).getAutore());
+        assertEquals("9788858501122",risultati.get(0).getIsbn());
     }
     
 }

@@ -30,25 +30,24 @@ public class GestoreGoogleBooks {
     private static final String URL_RICHIESTA_ISBN= "isbn:";
     private static final String URL_RICHIESTA_AUTORE= "inauthor:";
     private static final String URL_RICHIESTA_TITOLO= "intitle:";
-
-    public static List<Libro> ricercaPerTitolo(String titolo) throws MalformedURLException, IOException {
-        titolo= titolo.replaceAll(" ","%20");
-        System.out.println(String.format(URL_RICHIESTA, API_KEY,URL_RICHIESTA_TITOLO,titolo));
-        richiestaGoogleBooks(String.format(URL_RICHIESTA, API_KEY,URL_RICHIESTA_TITOLO,titolo));
-        return null;
+    public static final String ISBN="isbn";
+    public static final String TITOLO="titolo";
+    public static final String AUTORE="autore";
+    
+    public static List<Libro> ricercaLibroTramiteParametro(String keyword, String parametro) throws IOException {
+        keyword=keyword.replace(" ", "%20");
+        switch(parametro) {
+            case ISBN: 
+                return richiestaGoogleBooks(String.format(URL_RICHIESTA, API_KEY,URL_RICHIESTA_ISBN,keyword));
+            case TITOLO:
+                return richiestaGoogleBooks(String.format(URL_RICHIESTA, API_KEY,URL_RICHIESTA_TITOLO,keyword));
+            case AUTORE:
+                return richiestaGoogleBooks(String.format(URL_RICHIESTA, API_KEY,URL_RICHIESTA_AUTORE,keyword));
+        }
+    return null;
     }
     
-    public static List<Libro> ricercaPerAutore(String autore) throws MalformedURLException, IOException {
-        richiestaGoogleBooks(String.format(URL_RICHIESTA, API_KEY,URL_RICHIESTA_AUTORE,autore));
-        return null;
-    }
-    
-    public static Libro ricercaPerISBN(String isbn) throws MalformedURLException, IOException {
-        JSONObject risutatoRicercaGoogleBooks= (JSONObject)richiestaGoogleBooks(String.format(URL_RICHIESTA, API_KEY,URL_RICHIESTA_ISBN,isbn)).get(0);
-        return null;
-    }
-    
-    private static JSONArray richiestaGoogleBooks(String urlRichiesta) throws MalformedURLException, IOException {
+    private static List<Libro> richiestaGoogleBooks(String urlRichiesta) throws MalformedURLException, IOException {
         URL googleBooks = new URL(urlRichiesta);
         URLConnection con = googleBooks.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -63,9 +62,7 @@ public class GestoreGoogleBooks {
         JSONObject json = (JSONObject) JSONSerializer.toJSON(response);
 	JSONArray risultatiRicercaGoogleBooks = json.getJSONArray("items");
 	
-        convertiFormato(risultatiRicercaGoogleBooks);
-        
-        return risultatiRicercaGoogleBooks;
+        return convertiFormato(risultatiRicercaGoogleBooks);
     }
     
     
@@ -104,10 +101,10 @@ public class GestoreGoogleBooks {
             }
         }
         
-        String copertina= ((JSONObject) volumeInfo).getJSONObject("imageLinks").getString("thumbnail");
-        System.out.println(copertina);
+        String urlCopertina= ((JSONObject) volumeInfo).getJSONObject("imageLinks").getString("thumbnail");
+        System.out.println(urlCopertina);
 
-        Libro libro = new Libro(isbn,titolo,autori,casaEditrice,dataPubblicazione,copertina);
+        Libro libro = new Libro(isbn,titolo,autori,casaEditrice,dataPubblicazione,urlCopertina);
         libriConvertiti.add(libro);
     }
     
