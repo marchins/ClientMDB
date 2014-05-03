@@ -15,7 +15,8 @@ public enum Valore {
     DUE("Due"),
     TRE("Tre"),
     QUATTRO("Quattro"),
-    CINQUE("Cinque"); 
+    CINQUE("Cinque"),
+    NON_VALUTATO("Non valutato"); 
     
     private final String representation;
 

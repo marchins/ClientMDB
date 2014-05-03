@@ -32,6 +32,20 @@ public class Libro implements Serializable {
     private String casaEditrice;
     private String dataPubblicazione;
     private String copertina;
+
+    public Libro(String isbn, String titolo, String autore, String casaEditrice, String dataPubblicazione, String copertina) {
+        this.isbn = isbn;
+        this.titolo = titolo;
+        this.autore = autore;
+        this.casaEditrice = casaEditrice;
+        this.dataPubblicazione = dataPubblicazione;
+        this.copertina = copertina;
+    }
+    
+    public Libro(){
+       super(); 
+    }
+    
     
     @OneToMany
     private Collection<CopiaUtente> copieUtente;

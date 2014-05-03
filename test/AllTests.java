@@ -15,7 +15,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
     creaCategoriaTest.class,
     registrazioneTest.class,
-    rimuoviCategoriaTest.class
+    rimuoviCategoriaTest.class,
+    ricercaGoogleBooksTest.class
 
 })
 public class AllTests {
