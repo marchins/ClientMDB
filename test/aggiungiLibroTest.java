@@ -33,6 +33,7 @@ public class aggiungiLibroTest {
         GestoreAccountLocale.login("test", "test");
     }
     
+    
     @Test
     public void test1() throws IOException {
         Libro libro = (GestoreLibreriaLocale.ricercaPerISBN("9788858501122")).get(0);
@@ -47,7 +48,18 @@ public class aggiungiLibroTest {
         assertEquals(1, result.size());
         assertEquals(2,result2.size());   
     }
+    
+    
+    @Test
+    public void test2() throws IOException {
+        Libro libro = (GestoreLibreriaLocale.ricercaPerISBN("9788858501122")).get(0);
+        GestoreLibreriaLocale.aggiungiLibro(libro);
+        List<Libro> result = em.createQuery("SELECT l FROM Libro l", Libro.class).getResultList();
+        assertEquals(1,result.size());            
+        assertEquals("img/9788858501122.jpg",result.get(0).getCopertina());
+    }
    
+    
     @After
     public void tearDownTest() {
         em.getTransaction().begin();
@@ -63,8 +75,5 @@ public class aggiungiLibroTest {
         em.getTransaction().commit();
         em.close();
     }
-    
-    
-    
     
 }
