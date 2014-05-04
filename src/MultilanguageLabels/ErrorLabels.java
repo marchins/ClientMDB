@@ -63,4 +63,8 @@ public final class ErrorLabels {
     
     public static final String CATEGORY_ALREADY_EXISTS_ITA="Il nome della categoria specificato è già in uso";
     public static final String CATEGORY_ALREADY_EXISTS_ENG="The name specified is already used by an other category";
+    
+    public static final String CATEGORY_ALREADY_ASSIGNED_ITA="La categoria specificata risulta già assegnata alla copia";
+    public static final String CATEGORY_ALREADY_ASSIGNED_ENG="The category is already assigned to this copy";
+
 }

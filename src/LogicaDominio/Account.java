@@ -8,10 +8,7 @@ package LogicaDominio;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -32,10 +29,10 @@ public class Account implements Serializable {
     private String cognome;
     private String dataNascita;
     
-    @OneToMany
+    @OneToMany(mappedBy="account")
     private Collection<CopiaUtente> copieUtente;
 
-    @ManyToMany
+    @OneToMany(mappedBy="account")
     private Collection<CredenzialiSocialNetwork> credenzialiSocialNetwork;
 
     public Collection<CredenzialiSocialNetwork> getCredenzialiSocialNetwork() {

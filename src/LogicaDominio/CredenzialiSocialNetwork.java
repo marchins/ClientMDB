@@ -8,10 +8,9 @@ package LogicaDominio;
 
 import Enumerations.SocialNetwork;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -27,9 +26,18 @@ public class CredenzialiSocialNetwork implements Serializable {
 
     private SocialNetwork socialNetwork;
     
-    @ManyToMany
-    private Collection<Account> accounts;
+    @ManyToOne
+    private Account account;
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    
     public SocialNetwork getSocialNetwork() {
         return socialNetwork;
     }
@@ -46,13 +54,7 @@ public class CredenzialiSocialNetwork implements Serializable {
         this.socialNetwork = socialNetwork;
     }
 
-    public Collection<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Collection<Account> accounts) {
-        this.accounts = accounts;
-    }
+    
     
     
     

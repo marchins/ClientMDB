@@ -47,7 +47,7 @@ public class Libro implements Serializable {
     }
     
     
-    @OneToMany
+    @OneToMany(mappedBy="libro")
     private Collection<CopiaUtente> copieUtente;
 
     

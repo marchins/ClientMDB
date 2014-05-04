@@ -22,10 +22,11 @@ public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String nome;
-    
+  
     @Id
     @ManyToOne
     private Account account;
+    
     @ManyToMany
     private Collection<CopiaUtente> copieLibriAssociate;
 

@@ -8,6 +8,7 @@ package GestoreLibreriaLocale;
 
 import Enumerations.Formato;
 import Exceptions.CategoriaGiaEsistenteException;
+import Exceptions.CategoriaGiaAssegnataException;
 import GestoreGoogleBooks.GestoreGoogleBooks;
 import LogicaDominio.Account;
 import LogicaDominio.Categoria;
@@ -47,7 +48,6 @@ public class GestoreLibreriaLocale {
        List<Libro> result = em.createQuery("SELECT l FROM Libro l WHERE l.isbn = '" + libro.getIsbn() +"'", Libro.class).getResultList();
        Account account = em.createQuery("SELECT a FROM Account a", Account.class).getSingleResult();
        
-       
        CopiaUtente copiaUtente = new CopiaUtente();
        copiaUtente.setLibro(libro);
        copiaUtente.setFormato(Formato.CARTACEO);
@@ -56,17 +56,15 @@ public class GestoreLibreriaLocale {
        if(result.size()>0) {
             List<Libro> copie = em.createQuery("SELECT l.copieUtente FROM Libro l WHERE l.isbn = '" + libro.getIsbn() +"'", Libro.class).getResultList();
             copiaUtente.setNumeroCopia(copie.size()+1);
-            //valutazione,stato lettura,collocazione,copertinalocale
-            //GestoreLibreriaRemoto.aggiungiLibro(libro,copiaUtente, autenticazione)
+            //TODO setCopertinaLocale
        } else {
             copiaUtente.setNumeroCopia(1);
             em.persist(libro);
-            //GestoreLibreriaRemoto.aggiungiLibro(libro,copiaUtente, autenticazione)
-            
        }
         em.persist(copiaUtente);
         em.getTransaction().commit();
         em.close(); 
+        //GestoreLibreriaRemoto.aggiungiLibro(libro,copiaUtente, autenticazione)
     }
     
     public static void creaCategoria(String nome) throws CategoriaGiaEsistenteException {
@@ -116,17 +114,22 @@ public class GestoreLibreriaLocale {
         return result;
     }
     
-    public static void assegnaCategoriaACopia(CopiaUtente libro, Categoria categoria) {
-        libro.getCategorieAssegnate().add(categoria);
-        EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
-        EntityManager em = emf.createEntityManager();
-        CopiaUtente copiaAttached= em.merge(libro);
-        em.remove(copiaAttached);
-        em.getTransaction().begin();
-        em.getTransaction().commit();
-        em.close();
-        
+    public static void assegnaCategoriaACopia(CopiaUtente copia, Categoria categoria) throws CategoriaGiaAssegnataException {
+        if(! copia.getCategorieAssegnate().contains(categoria)) {  
+            EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("ClientMDBPU");
+            EntityManager em = emf.createEntityManager();
+            copia.getCategorieAssegnate().add(categoria);
+            categoria.getCopieLibriAssociate().add(copia);
+            em.getTransaction().begin();
+            em.merge(copia);
+            em.merge(categoria);
+            em.getTransaction().commit();
+            em.close();
+        } else {
+            throw new CategoriaGiaAssegnataException();
+        }
     }
+    
     
 
 }

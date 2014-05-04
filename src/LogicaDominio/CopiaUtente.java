@@ -9,6 +9,7 @@ package LogicaDominio;
 import Enumerations.Formato;
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -25,16 +26,16 @@ public class CopiaUtente implements Serializable {
     @Id
     private int numeroCopia;
     @Id
-    @OneToOne
+    @ManyToOne
     private Libro libro;
     @Id
-    @OneToOne
+    @ManyToOne
     private Account account;
 
     private Formato formato;
     private String copertinaLocale;
 
-    @ManyToMany
+    @ManyToMany(mappedBy="copieLibriAssociate", cascade={CascadeType.REMOVE})
     private Collection<Categoria> categorieAssegnate;
   
     @ManyToOne
@@ -52,6 +53,30 @@ public class CopiaUtente implements Serializable {
 
     public void setCategorieAssegnate(Collection<Categoria> categorieAssegnate) {
         this.categorieAssegnate = categorieAssegnate;
+    }
+
+    public StatoLettura getStatoLettura() {
+        return statoLettura;
+    }
+
+    public void setStatoLettura(StatoLettura statoLettura) {
+        this.statoLettura = statoLettura;
+    }
+
+    public Valutazione getValutazione() {
+        return valutazione;
+    }
+
+    public void setValutazione(Valutazione valutazione) {
+        this.valutazione = valutazione;
+    }
+
+    public Collocazione getCollocazione() {
+        return collocazione;
+    }
+
+    public void setCollocazione(Collocazione collocazione) {
+        this.collocazione = collocazione;
     }
     
     
