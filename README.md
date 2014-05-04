@@ -8,6 +8,9 @@ ClientMDB
     <ul>
         <li>Gestore Fotocamera</li>
         <li>Download copertina libro</li>
+            <ul>
+            <li>Sistemare generazione URL copertina (metodo <i>downloadCopertina</i>)</il>
+            </ul>
     </ul>
-<li>Sistemare aggiungiCateogoriaALibroTest (Problema su Tabella COPIALIBRO_CATEGORIA)</li>
+<li>Sistemare problema su Tabella COPIALIBRO_CATEGORIA (metodo <i>aggiungiCateogoriaALibroTest</i>)</li>
 </ul>
