@@ -7,14 +7,18 @@
 package GestoreGoogleBooks;
 
 import LogicaDominio.Libro;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
@@ -96,12 +100,46 @@ public class GestoreGoogleBooks {
         }
         
         String urlCopertina= ((JSONObject) volumeInfo).getJSONObject("imageLinks").getString("thumbnail");
-
-        Libro libro = new Libro(isbn,titolo,autori,casaEditrice,dataPubblicazione,urlCopertina);
+        String urlCopertinaLocale = downloadCopertina(urlCopertina, isbn);
+        Libro libro = new Libro(isbn,titolo,autori,casaEditrice,dataPubblicazione,urlCopertinaLocale);
         libriConvertiti.add(libro);
     }
     
     return libriConvertiti;  
+    }
+    
+    
+    private static String downloadCopertina(String urlCopertina, String isbn) {
+        
+        String path = "img/";
+        String fileExtension = "jpg";
+        String result = "";
+        
+        BufferedImage image = null;
+       
+        try{
+ 
+            URL url = new URL(urlCopertina);
+
+            URLConnection urlConn = url.openConnection(); 
+            urlConn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.21; Mac_PowerPC)" ); 
+            urlConn.connect(); 
+            InputStream urlStream = urlConn.getInputStream(); 
+
+            BufferedImage b = ImageIO.read(urlStream); 
+            
+            //TODO: sistemare result
+            if (ImageIO.write(b, fileExtension, new File(path+isbn+"."+fileExtension))) {
+                result = path + isbn + "." + fileExtension;
+                System.out.println(result);
+            }
+ 
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+        return result;
+        
     }
     
 }
