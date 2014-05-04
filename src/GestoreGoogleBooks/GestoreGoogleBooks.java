@@ -127,10 +127,13 @@ public class GestoreGoogleBooks {
             InputStream urlStream = urlConn.getInputStream(); 
 
             BufferedImage b = ImageIO.read(urlStream); 
-            
+            File file = new File(path+isbn+"."+fileExtension);
             //TODO: sistemare result
-            if (ImageIO.write(b, fileExtension, new File(path+isbn+"."+fileExtension))) {
-                result = path + isbn + "." + fileExtension;
+            if (ImageIO.write(b, fileExtension, file)) {
+                if(file.exists()) {
+                    result = file.getPath();
+                }
+                //result = path + isbn + "." + fileExtension;
                 System.out.println(result);
             }
  
