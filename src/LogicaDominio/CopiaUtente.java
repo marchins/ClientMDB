@@ -49,7 +49,7 @@ public class CopiaUtente implements Serializable {
     private Valutazione valutazione;
     
     
-    private String libreria;
+    private String nomelibreria;
     private String posizioneNellaLibreria;
     
     
