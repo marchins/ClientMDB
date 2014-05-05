@@ -5,6 +5,7 @@ ClientMDB
 <ul>
 <li>Sistemare le chiavi primarie database locale</li>
 <li>Gestire eccezioni nella ricerca su Google Books</li>
+<li>Dopo aggiunta di un libro settare con i valori di default le informazioni soggettive</li>
 <li>Integrare Gestore Google Books con: </li>
     <ul>
         <li>Gestore Fotocamera</li>
