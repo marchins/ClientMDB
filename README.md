@@ -13,5 +13,5 @@ ClientMDB
             <li>Sistemare generazione URL copertina (metodo <i>downloadCopertina</i>)</il>
             </ul>
     </ul>
-<li>Sistemare problema su Tabella COPIALIBRO_CATEGORIA (metodo <i>aggiungiCateogoriaALibroTest</i>)</li>
+<li>Sistemare problema su Tabella COPIALIBRO_CATEGORIA (metodo <i>aggiungiCategoriaALibroTest</i>)</li>
 </ul>
