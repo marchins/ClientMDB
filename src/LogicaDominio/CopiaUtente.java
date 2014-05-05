@@ -7,10 +7,14 @@
 package LogicaDominio;
 
 import Enumerations.Formato;
+import Enumerations.StatoLettura;
+import Enumerations.Valutazione;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -38,49 +42,27 @@ public class CopiaUtente implements Serializable {
     @ManyToMany(mappedBy="copieLibriAssociate", cascade={CascadeType.REMOVE})
     private Collection<Categoria> categorieAssegnate;
   
-    @ManyToOne
+    @Enumerated(EnumType.STRING)
     private StatoLettura statoLettura;
     
-    @ManyToOne
+    @Enumerated(EnumType.STRING)
     private Valutazione valutazione;
     
-    @OneToOne
-    private Collocazione collocazione;
+    
+    private String libreria;
+    private String posizioneNellaLibreria;
+    
     
     public Collection<Categoria> getCategorieAssegnate() {
         return categorieAssegnate;
     }
 
+    
     public void setCategorieAssegnate(Collection<Categoria> categorieAssegnate) {
         this.categorieAssegnate = categorieAssegnate;
     }
 
-    public StatoLettura getStatoLettura() {
-        return statoLettura;
-    }
-
-    public void setStatoLettura(StatoLettura statoLettura) {
-        this.statoLettura = statoLettura;
-    }
-
-    public Valutazione getValutazione() {
-        return valutazione;
-    }
-
-    public void setValutazione(Valutazione valutazione) {
-        this.valutazione = valutazione;
-    }
-
-    public Collocazione getCollocazione() {
-        return collocazione;
-    }
-
-    public void setCollocazione(Collocazione collocazione) {
-        this.collocazione = collocazione;
-    }
     
-    
-
     public Libro getLibro() {
         return libro;
     }
