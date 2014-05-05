@@ -14,7 +14,8 @@ public enum Stato {
     LETTO("Letto"), 
     IN_LETTURA("In lettura"),
     NON_LETTO("Non letto"),
-    ABBANDONATO("Abbandonato"); 
+    ABBANDONATO("Abbandonato"),
+    NON_SPECIFICATO("Non specificato"); 
     
     private final String representation;
 
