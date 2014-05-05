@@ -10,7 +10,7 @@ package Enumerations;
  *
  * @author Alessio
  */
-public enum Valore {
+public enum Valutazione {
     UNO("Uno"), 
     DUE("Due"),
     TRE("Tre"),
@@ -20,7 +20,7 @@ public enum Valore {
     
     private final String representation;
 
-    Valore(String representation) {
+    Valutazione(String representation) {
         this.representation = representation;
     }
 
@@ -29,8 +29,8 @@ public enum Valore {
 	return representation;
     }
 	
-    public static Valore fromString(String representation) {
-	for (Valore s : Valore.values()) {
+    public static Valutazione fromString(String representation) {
+	for (Valutazione s : Valutazione.values()) {
 		if (s.getRepresentation().equals(representation)) {
 			return s;
 		}

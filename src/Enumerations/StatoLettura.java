@@ -10,7 +10,7 @@ package Enumerations;
  *
  * @author Alessio
  */
-public enum Stato {
+public enum StatoLettura {
     LETTO("Letto"), 
     IN_LETTURA("In lettura"),
     NON_LETTO("Non letto"),
@@ -19,7 +19,7 @@ public enum Stato {
     
     private final String representation;
 
-    Stato(String representation) {
+    StatoLettura(String representation) {
         this.representation = representation;
     }
 
@@ -28,8 +28,8 @@ public enum Stato {
 	return representation;
     }
 	
-    public static Stato fromString(String representation) {
-	for (Stato s : Stato.values()) {
+    public static StatoLettura fromString(String representation) {
+	for (StatoLettura s : StatoLettura.values()) {
 		if (s.getRepresentation().equals(representation)) {
 			return s;
 		}
