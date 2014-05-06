@@ -52,7 +52,7 @@ public class assegnaCategoriaALibroTest {
         GestoreLibreriaLocale.assegnaCategoriaACopia(copiaUtente,categoria);
     }
     
-    
+    /*
     @After
     public void tearDownTest() {
         em.getTransaction().begin();
@@ -60,14 +60,14 @@ public class assegnaCategoriaALibroTest {
         for(Categoria cat : result){
             GestoreLibreriaLocale.rimuoviCategoria(cat);
         }
-        /*em.createQuery("DELETE FROM Categoria cat").executeUpdate();
+        em.createQuery("DELETE FROM Categoria cat").executeUpdate();
         em.createQuery("DELETE FROM CopiaUtente c").executeUpdate();
         em.createQuery("DELETE FROM Account a").executeUpdate();
-        em.createQuery("DELETE FROM Libro l").executeUpdate();*/
+        em.createQuery("DELETE FROM Libro l").executeUpdate();
         
         em.getTransaction().commit();
     }
-    
+    */
     /*
     @AfterClass
     public static void tearDownClass() {

@@ -24,7 +24,6 @@ import javax.persistence.Table;
 public class Libro implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String isbn;
     
     private String titolo;
