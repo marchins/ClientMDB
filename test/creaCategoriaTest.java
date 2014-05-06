@@ -31,7 +31,7 @@ public class creaCategoriaTest {
         em = emf.createEntityManager();
         GestoreAccountLocale.login("test", "test");
     }
-    
+    /*
     @Test
     public void test1() throws CategoriaGiaEsistenteException {
         GestoreLibreriaLocale.creaCategoria("categoria1");
@@ -39,7 +39,7 @@ public class creaCategoriaTest {
         assertEquals(1, result.size());
         assertEquals("categoria1", result.get(0).getNome());
     }
-    
+    */
     @Test
     public void test2() throws CategoriaGiaEsistenteException {
         GestoreLibreriaLocale.creaCategoria("categoria2");
@@ -48,7 +48,7 @@ public class creaCategoriaTest {
         List<Categoria> result = em.createQuery("SELECT c FROM Categoria c",Categoria.class).getResultList();
         assertEquals(3, result.size());
     }
-    
+    /*
     @Test(expected=CategoriaGiaEsistenteException.class)
     public void test3() throws CategoriaGiaEsistenteException {
         GestoreLibreriaLocale.creaCategoria("categoria5");
@@ -69,5 +69,6 @@ public class creaCategoriaTest {
         em.getTransaction().commit();
         em.close();
     }
+    */
     
 }

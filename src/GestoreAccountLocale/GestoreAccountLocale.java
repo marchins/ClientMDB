@@ -45,7 +45,7 @@ public class GestoreAccountLocale {
         em.getTransaction().begin();
         try {
             em.persist(account);
-                em.getTransaction().commit();
+            em.getTransaction().commit();
         } catch (Exception e) {
         em.getTransaction().rollback();
         } finally {

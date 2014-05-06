@@ -15,24 +15,31 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import org.eclipse.persistence.annotations.UuidGenerator;
 
 /**
  *
  * @author Alessio
  */
 @Entity
+@UuidGenerator(name="UUID-GEN")
 public class CopiaUtente implements Serializable {
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
+    
     @Id
+    @GeneratedValue(generator="UUID-GEN", strategy=GenerationType.TABLE)
+    private String id;
+    
     private int numeroCopia;
-    @Id
+    
     @ManyToOne
     private Libro libro;
-    @Id
+    
     @ManyToOne
     private Account account;
 

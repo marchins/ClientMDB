@@ -9,21 +9,29 @@ package LogicaDominio;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import org.eclipse.persistence.annotations.UuidGenerator;
 
 /**
  *
  * @author Blanco
  */
 @Entity
+@UuidGenerator(name="UUID-GEN")
 public class Categoria implements Serializable {
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
+    
     @Id
+    @GeneratedValue(generator="UUID-GEN", strategy=GenerationType.TABLE)
+    private String id;
+    
     private String nome;
   
-    @Id
+    
     @ManyToOne
     private Account account;
     

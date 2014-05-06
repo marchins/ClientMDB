@@ -81,6 +81,7 @@ public class GestoreLibreriaLocale {
             categoria.setNome(nome);
             categoria.setAccount(account);
             em.getTransaction().begin();
+            //System.out.println("pippo" + categoria);
             em.persist(categoria);
             em.getTransaction().commit();
             //GestoreLibreriaRemoto.creaCategoria(Categoria, autenticazione)
