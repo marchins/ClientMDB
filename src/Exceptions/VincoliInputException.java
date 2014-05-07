@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Exceptions;
 
 /**
  *
  * @author Alessio
  */
-public class VincoliInputException extends Exception{
-    
+public class VincoliInputException extends Exception {
+
     public VincoliInputException(String message) {
         super(message);
     }

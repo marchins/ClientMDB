@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GestoreFotocamera;
 
 import com.github.sarxos.webcam.Webcam;
@@ -35,15 +34,14 @@ import javax.swing.JTextArea;
  * @author Marchins
  */
 public class GestoreFotocamera extends JFrame implements Runnable, ThreadFactory {
-    
+
     private static final long serialVersionUID = 6441489157408381878L;
 
     private final Executor executor = Executors.newSingleThreadExecutor((ThreadFactory) this);
     private Webcam webcam = null;
     private WebcamPanel panel = null;
     //private JTextArea textarea = null;
-        
-    
+
     public GestoreFotocamera() {
         super();
 
@@ -62,7 +60,6 @@ public class GestoreFotocamera extends JFrame implements Runnable, ThreadFactory
         //textarea = new JTextArea();
         //textarea.setEditable(false);
         //textarea.setPreferredSize(size);
-
         add(panel);
         //add(textarea);
 
@@ -71,16 +68,15 @@ public class GestoreFotocamera extends JFrame implements Runnable, ThreadFactory
 
         executor.execute(this);
     }
-    
-    
+
     @Override
     public void run() {
-        
+
         Collection<BarcodeFormat> c = new ArrayList<>();
         c.add(BarcodeFormat.EAN_13);
-        
+
         HashMap<DecodeHintType, Object> decodeHints = new HashMap<>();
-        decodeHints.put(DecodeHintType.POSSIBLE_FORMATS,  c);
+        decodeHints.put(DecodeHintType.POSSIBLE_FORMATS, c);
         decodeHints.put(DecodeHintType.CHARACTER_SET, "ISO-8859-1");
         decodeHints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
         decodeHints.put(DecodeHintType.PURE_BARCODE, Boolean.TRUE);
@@ -126,21 +122,21 @@ public class GestoreFotocamera extends JFrame implements Runnable, ThreadFactory
         t.setDaemon(true);
         return t;
     }
-    
+
     /*
-    public static String acquisisciIsbn() {
+     public static String acquisisciIsbn() {
         
-        return "";
-    }
+     return "";
+     }
     
-    private static String acquisisciBarcode() {
+     private static String acquisisciBarcode() {
         
-        return "";
-    }
+     return "";
+     }
     
-    private static String convertiBarcode(String barcode) {
+     private static String convertiBarcode(String barcode) {
         
-        return "";
-    }
-    */
+     return "";
+     }
+     */
 }

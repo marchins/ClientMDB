@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package LogicaDominio;
 
 import java.io.Serializable;
@@ -18,12 +17,13 @@ import javax.persistence.Table;
  * @author Alessio
  */
 @Entity
-@Table(name="Libro")
+@Table(name = "Libro")
 public class Libro implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     private String isbn;
-    
+
     private String titolo;
     private String autore;
     private String casaEditrice;
@@ -38,16 +38,14 @@ public class Libro implements Serializable {
         this.dataPubblicazione = dataPubblicazione;
         this.copertina = copertina;
     }
-    
-    public Libro(){
-       super(); 
+
+    public Libro() {
+        super();
     }
-    
-    
-    @OneToMany(mappedBy="libro")
+
+    @OneToMany(mappedBy = "libro")
     private Collection<CopiaUtente> copieUtente;
 
-    
     public Collection<CopiaUtente> getCopieUtente() {
         return copieUtente;
     }
@@ -55,7 +53,7 @@ public class Libro implements Serializable {
     public void setCopieUtente(Collection<CopiaUtente> copieUtente) {
         this.copieUtente = copieUtente;
     }
-   
+
     public String getTitolo() {
         return titolo;
     }
@@ -95,7 +93,7 @@ public class Libro implements Serializable {
     public void setCopertina(String copertina) {
         this.copertina = copertina;
     }
-    
+
     public String getIsbn() {
         return isbn;
     }
@@ -128,5 +126,5 @@ public class Libro implements Serializable {
     public String toString() {
         return "LogicaDominio.Libro[ id=" + isbn + " ]";
     }
-    
+
 }

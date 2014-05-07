@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Enumerations;
 
 /**
@@ -11,36 +10,37 @@ package Enumerations;
  * @author Alessio
  */
 public enum Formato {
-    DIGITALE("Digitale"), 
-    CARTACEO("Cartaceo"); 
-    
+
+    DIGITALE("Digitale"),
+    CARTACEO("Cartaceo");
+
     private final String representation;
 
     Formato(String representation) {
         this.representation = representation;
     }
 
-
     public String getRepresentation() {
-	return representation;
+        return representation;
     }
-	
+
     public static Formato fromString(String representation) {
-	for (Formato s : Formato.values()) {
-		if (s.getRepresentation().equals(representation)) {
-			return s;
-		}
-	}
-	throw new IllegalArgumentException("No value associated with given representation exists");
+        for (Formato s : Formato.values()) {
+            if (s.getRepresentation().equals(representation)) {
+                return s;
+            }
+        }
+        throw new IllegalArgumentException("No value associated with given representation exists");
     }
-	
-	/**
-	 * Returns a string representing this constant.
-     * @return 
-	 */
+
+    /**
+     * Returns a string representing this constant.
+     *
+     * @return
+     */
     @Override
     public String toString() {
-		return this.getRepresentation();
+        return this.getRepresentation();
     }
-    
+
 }

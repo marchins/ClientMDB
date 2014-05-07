@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package LogicaDominio;
 
 import java.io.Serializable;
@@ -18,21 +17,21 @@ import org.eclipse.persistence.annotations.UuidGenerator;
  * @author Blanco
  */
 @Entity
-@UuidGenerator(name="UUID-GEN")
+@UuidGenerator(name = "UUID-GEN")
 public class Amico implements Serializable {
     //private static final long serialVersionUID = 1L;
-    
+
     @Id
-    @GeneratedValue(generator="UUID-GEN", strategy=GenerationType.TABLE)
+    @GeneratedValue(generator = "UUID-GEN", strategy = GenerationType.TABLE)
     private String id;
-    
+
     private String nome;
     private String email;
-    
+
     public String getNome() {
         return this.nome;
     }
-    
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -61,5 +60,5 @@ public class Amico implements Serializable {
     public String toString() {
         return "LogicaDominio.Amico[ id=" + id + " ]";
     }
-    
+
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package LogicaDominio;
 
 import Enumerations.Formato;
@@ -27,49 +26,45 @@ import org.eclipse.persistence.annotations.UuidGenerator;
  * @author Alessio
  */
 @Entity
-@UuidGenerator(name="UUID-GEN")
+@UuidGenerator(name = "UUID-GEN")
 public class CopiaUtente implements Serializable {
     //private static final long serialVersionUID = 1L;
-    
+
     @Id
-    @GeneratedValue(generator="UUID-GEN", strategy=GenerationType.TABLE)
+    @GeneratedValue(generator = "UUID-GEN", strategy = GenerationType.TABLE)
     private String id;
-    
+
     private int numeroCopia;
-    
+
     @ManyToOne
     private Libro libro;
-    
+
     @ManyToOne
     private Account account;
 
     private Formato formato;
     private String copertinaLocale;
 
-    @ManyToMany(mappedBy="copieLibriAssociate", cascade={CascadeType.REMOVE})
+    @ManyToMany(mappedBy = "copieLibriAssociate", cascade = {CascadeType.REMOVE})
     private Collection<Categoria> categorieAssegnate;
-  
+
     @Enumerated(EnumType.STRING)
     private StatoLettura statoLettura;
-    
+
     @Enumerated(EnumType.STRING)
     private Valutazione valutazione;
-    
-    
+
     private String nomelibreria;
     private String posizioneNellaLibreria;
-    
-    
+
     public Collection<Categoria> getCategorieAssegnate() {
         return categorieAssegnate;
     }
 
-    
     public void setCategorieAssegnate(Collection<Categoria> categorieAssegnate) {
         this.categorieAssegnate = categorieAssegnate;
     }
 
-    
     public Libro getLibro() {
         return libro;
     }
@@ -101,8 +96,7 @@ public class CopiaUtente implements Serializable {
     public void setCopertinaLocale(String copertinaLocale) {
         this.copertinaLocale = copertinaLocale;
     }
-    
- 
+
     public int getNumeroCopia() {
         return numeroCopia;
     }
@@ -135,5 +129,5 @@ public class CopiaUtente implements Serializable {
     public String toString() {
         return "LogicaDominio.CopiaUtente[ id=" + numeroCopia + " ]";
     }
-    
+
 }

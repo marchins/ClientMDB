@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package LogicaDominio;
 
 import java.io.Serializable;
@@ -20,12 +19,12 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Account implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    
     private String username;
 
     private String password;
@@ -33,11 +32,11 @@ public class Account implements Serializable {
     private String nome;
     private String cognome;
     private String dataNascita;
-    
-    @OneToMany(mappedBy="account")
+
+    @OneToMany(mappedBy = "account")
     private Collection<CopiaUtente> copieUtente;
 
-    @OneToMany(mappedBy="account")
+    @OneToMany(mappedBy = "account")
     private Collection<CredenzialiSocialNetwork> credenzialiSocialNetwork;
 
     public Collection<CredenzialiSocialNetwork> getCredenzialiSocialNetwork() {
@@ -47,9 +46,7 @@ public class Account implements Serializable {
     public void setCredenzialiSocialNetwork(Collection<CredenzialiSocialNetwork> credenzialiSocialNetwork) {
         this.credenzialiSocialNetwork = credenzialiSocialNetwork;
     }
-    
-    
-    
+
     public String getPassword() {
         return password;
     }
@@ -97,7 +94,7 @@ public class Account implements Serializable {
     public void setCopieUtente(Collection<CopiaUtente> copieUtente) {
         this.copieUtente = copieUtente;
     }
-    
+
     public String getUsername() {
         return username;
     }
@@ -130,5 +127,5 @@ public class Account implements Serializable {
     public String toString() {
         return "LogicaDominio.Account[ id=" + username + " ]";
     }
-    
+
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package LogicaDominio;
 
 import Enumerations.SocialNetwork;
@@ -18,6 +17,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class CredenzialiSocialNetwork implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     private String accessToken;
@@ -25,7 +25,7 @@ public class CredenzialiSocialNetwork implements Serializable {
     private String accessTokenSecret;
 
     private SocialNetwork socialNetwork;
-    
+
     @ManyToOne
     private Account account;
 
@@ -37,7 +37,6 @@ public class CredenzialiSocialNetwork implements Serializable {
         this.account = account;
     }
 
-    
     public SocialNetwork getSocialNetwork() {
         return socialNetwork;
     }
@@ -54,11 +53,6 @@ public class CredenzialiSocialNetwork implements Serializable {
         this.socialNetwork = socialNetwork;
     }
 
-    
-    
-    
-    
-    
     public String getAccessToken() {
         return accessToken;
     }
@@ -91,5 +85,5 @@ public class CredenzialiSocialNetwork implements Serializable {
     public String toString() {
         return "LogicaDominio.CredenzialiSocialNetwork[ id=" + accessToken + " ]";
     }
-    
+
 }

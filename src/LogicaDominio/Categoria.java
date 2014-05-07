@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package LogicaDominio;
 
 import java.io.Serializable;
@@ -21,23 +20,21 @@ import org.eclipse.persistence.annotations.UuidGenerator;
  * @author Blanco
  */
 @Entity
-@UuidGenerator(name="UUID-GEN")
+@UuidGenerator(name = "UUID-GEN")
 public class Categoria implements Serializable {
     //private static final long serialVersionUID = 1L;
-    
+
     @Id
-    @GeneratedValue(generator="UUID-GEN", strategy=GenerationType.TABLE)
+    @GeneratedValue(generator = "UUID-GEN", strategy = GenerationType.TABLE)
     private String id;
-    
+
     private String nome;
-  
-    
+
     @ManyToOne
     private Account account;
-    
+
     @ManyToMany
     private Collection<CopiaUtente> copieLibriAssociate;
-
 
     public Collection<CopiaUtente> getCopieLibriAssociate() {
         return copieLibriAssociate;
@@ -46,8 +43,7 @@ public class Categoria implements Serializable {
     public void setCopieLibriAssociate(Collection<CopiaUtente> copieLibriAssociate) {
         this.copieLibriAssociate = copieLibriAssociate;
     }
-    
-    
+
     public Account getAccount() {
         return account;
     }
@@ -63,7 +59,6 @@ public class Categoria implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
 
     @Override
     public int hashCode() {
@@ -89,5 +84,5 @@ public class Categoria implements Serializable {
     public String toString() {
         return "LogicaDominio.Categoria[ id=" + nome + " ]";
     }
-    
+
 }
